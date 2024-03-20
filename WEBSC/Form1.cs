@@ -11,13 +11,16 @@ namespace WEBSC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // the URL of the target Wikipedia page
-            string url = "https://en.wikipedia.org/wiki/List_of_SpongeBob_SquarePants_episodes";
+            var html = @"http://html-agility-pack.net/";
 
-            var web = new HtmlWeb();
-            // downloading to the target page
-            // and parsing its HTML content
-            var document = web.Load(url);
+            HtmlWeb web = new HtmlWeb();
+
+            var htmlDoc = web.Load(html);
+
+            var node = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
+
+            // label1.Text = "Node Name: " + node.Name + "\n" + node.OuterHtml;
+            label1.Text = "Node Name: " + node.Name + "\n" + node.InnerHtml;
         }
     }
 }
